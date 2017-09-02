@@ -26,8 +26,11 @@ std::string hasData(std::string s) {
   return "";
 }
 
+ofstream logfile;
 int main()
 {
+  logfile.open("log.txt");
+
   uWS::Hub h;
 
   // Create a Kalman Filter instance
@@ -139,6 +142,25 @@ int main()
           auto msg = "42[\"estimate_marker\"," + msgJson.dump() + "]";
           // std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
+
+          //-- LOGGING ---------
+          logfile << ukf.x_(0) << "\t" << ukf.x_(1) << "\t" << ukf.x_(2) << "\t" << ukf.x_(3) << "\t" ;
+          if (sensor_type.compare("L") == 0)
+          {
+            logfile << meas_package.raw_measurements_(0) << "\t" << meas_package.raw_measurements_(1) << "\t";
+          }
+          else if (sensor_type.compare("R") == 0)
+          {
+            float rho = meas_package.raw_measurements_(0);
+            float phi = meas_package.raw_measurements_(1);
+            float rho_dot = meas_package.raw_measurements_(2);
+            float px = rho * cos(phi);
+            float py = rho * sin(phi);
+            logfile << px << "\t" << py << "\t";
+          }
+          logfile << gt_values(0) << "\t" << gt_values(1) << "\t" << gt_values(2) << "\t" << gt_values(3) << "\t";
+          logfile << RMSE(0) <<"\t"  << RMSE(1) <<"\t" <<  RMSE(2) <<"\t"  << RMSE(3) << endl;
+          //---------------------
 	  
         }
       } else {
