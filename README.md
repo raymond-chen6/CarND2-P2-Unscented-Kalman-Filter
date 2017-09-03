@@ -20,7 +20,7 @@
 
   https://github.com/udacity/self-driving-car-sim/releases/
 
-The goals / steps of this project are the following:
+The goals / steps of this project are shown as below:
 
 [//]: # (Image References)
 [image1]: ./images/ukf_1.gif
