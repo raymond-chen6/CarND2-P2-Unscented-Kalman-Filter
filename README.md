@@ -24,6 +24,10 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 [image1]: ./images/ukf_1.gif
+[image2]: ./images/flowchart.png
+
+![alt text][image2]
+
 
 * The measurement data receiving and connection to simulator is in C++ file `./src/main.cpp`.
 
