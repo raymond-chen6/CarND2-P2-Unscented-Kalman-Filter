@@ -28,6 +28,7 @@ The goals / steps of this project are shown as below:
 
 ![alt text][image2]
 
+**File structure:**
 
 * The measurement data receiving and connection to simulator is in C++ file `./src/main.cpp`.
 
